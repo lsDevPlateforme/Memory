@@ -1,4 +1,4 @@
-import { useStoreShop } from "@/store/memory.store";
+import { useStoreMode, useStoreShop } from "@/store/memory.store";
 import { Settings } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import {
@@ -13,6 +13,10 @@ import { ItemShop } from "./ItemShop";
 
 export const SettingsModale = () => {
   const { shopItems, changeItems } = useStoreShop();
+  const { actifMode, setActifMode } = useStoreMode();
+  const handleClickMode = (nbMode) => {
+    setActifMode(nbMode);
+  };
   return (
     <Dialog>
       <DialogTrigger
@@ -28,13 +32,34 @@ export const SettingsModale = () => {
         <div className="flex items-center justify-between">
           <p>Difficulter:</p>
           <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
-            <button className="inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
+            <button
+              onClick={() => handleClickMode(0)}
+              className={`inline-block rounded-md px-4 py-2 text-sm  ${
+                actifMode === 0
+                  ? "text-white bg-primary shadow-sm"
+                  : "text-gray-500 hover:text-gray-700 focus:relative"
+              }`}
+            >
               Facile
             </button>
-            <button className="inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
+            <button
+              onClick={() => handleClickMode(1)}
+              className={`inline-block rounded-md px-4 py-2 text-sm  ${
+                actifMode === 1
+                  ? "text-white bg-primary shadow-sm"
+                  : "text-gray-500 hover:text-gray-700 focus:relative"
+              }`}
+            >
               Normal
             </button>
-            <button className="inline-block rounded-md bg-primary px-4 py-2 text-sm text-white shadow-sm focus:relative">
+            <button
+              onClick={() => handleClickMode(2)}
+              className={`inline-block rounded-md px-4 py-2 text-sm  ${
+                actifMode === 2
+                  ? "text-white bg-primary shadow-sm"
+                  : "text-gray-500 hover:text-gray-700 focus:relative"
+              }`}
+            >
               Difficile
             </button>
           </div>

@@ -8,10 +8,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    children: [
-      // { path: "/", element: <HomePage /> },
-      { path: "/", element: <MemoryPage /> },
-    ],
+    children: [{ path: "/", element: <MemoryPage /> }],
   },
 ]);
 

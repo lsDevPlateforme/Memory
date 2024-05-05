@@ -1,3 +1,5 @@
+import { Error } from "@/components/my-ui/error";
+
 export const ErrorPage = () => {
-  return <div>Error</div>;
+  return <Error />;
 };

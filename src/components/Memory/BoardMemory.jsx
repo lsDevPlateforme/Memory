@@ -1,7 +1,12 @@
 import { useActiveItems, useStoreMode } from "@/store/memory.store";
 import { useEffect, useMemo, useState } from "react";
 import Confetti from "react-confetti";
-import { modes } from "../Home/Menu";
+
+const modes = [
+  { type: "easy", value: 6 },
+  { type: "normal", value: 12 },
+  { type: "hard", value: 16 },
+];
 
 const names = [
   "Lucas",
@@ -38,7 +43,6 @@ const transformeArray = (nombre, multiple, array) => {
 };
 
 const genereCards = (array, typeImg) => {
-  console.log(typeImg);
   return array.map((item, index) => ({
     id: index,
     name: item,
@@ -55,6 +59,7 @@ export const BoardMemory = () => {
     () => transformeArray(modes[actifMode].value, 2, names),
     [actifMode, names]
   );
+
   const cardsInitialState = useMemo(
     () => genereCards(array, itemActive[0].type),
     [array, itemActive]
@@ -63,7 +68,7 @@ export const BoardMemory = () => {
 
   useEffect(() => {
     setCards(cardsInitialState);
-  }, [itemActive]);
+  }, [itemActive, array]);
 
   const [gameWon, setGameWon] = useState(false);
 
